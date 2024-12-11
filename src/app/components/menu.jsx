@@ -9,12 +9,12 @@ const menu = [
         href: '/'
     },
     {
-        text: 'Alumnos',
-        href: '/alumnos'
+        text: 'Medicos',
+        href: '/medicos'
     },
     {
-        text: 'Profesores',
-        href: '/profesores'
+        text: 'Pacientess',
+        href: '/pacientes'
     }
 ]
 
