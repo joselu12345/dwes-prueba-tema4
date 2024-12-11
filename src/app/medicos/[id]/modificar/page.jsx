@@ -1,32 +1,32 @@
 import connection from "@/lib/mysql";
 import { redirect } from "next/navigation";
 
-async function modificarAlumno(formData) {
+async function modificarMedico(formData) {
     'use server'
     const id = formData.get('id')
     const nombre = formData.get('nombre')
-    const localidad = formData.get('localidad')
-    const fecha_nacimiento = formData.get('fecha_nacimiento')
+    const especialidad = formData.get('especialidad')
+    const perfil = formData.get('perfil')
 
-    await connection.query('update alumnos set nombre=?, localidad=?, fecha_nacimiento=? where id=?',
-        [nombre, localidad, fecha_nacimiento, id])
+    await connection.query('update medicos set nombre=?, especialidad=?, perfil=? where id=?',
+        [nombre, especialidad, perfil, id])
 
-    redirect(`/alumnos/${id}`)
+    redirect(`/medicos/${id}`)
 }
 
 async function PaginaModificar({params}) {
     const {id} = await params
 
-    const [ rows ] = await connection.query('select * from alumnos where id=?', [id])
-    const alumno = rows[0]
-    console.log(alumno)
+    const [ rows ] = await connection.query('select * from medicos where id=?', [id])
+    const medico = rows[0]
+    console.log(medico)
 
     return ( 
-        <form action={modificarAlumno}>
-            <input type="hidden" name='id' defaultValue={alumno.id}/>
-            <input type="text" name="nombre" defaultValue={alumno.nombre}/>
-            <input type="text" name="localidad" defaultValue={alumno.localidad}/>
-            <input type="text" name="fecha_nacimiento" defaultValue={alumno.fecha_nacimiento.toISOString().split('T')[0]}/>
+        <form action={modificarMedico}>
+            <input type="hidden" name='id' defaultValue={medico.id}/>
+            <input type="text" name="nombre" defaultValue={medico.nombre}/>
+            <input type="text" name="especialidad" defaultValue={medico.especialidad}/>
+            <input type="text" name="perfil" defaultValue={medico.perfil}/>
             <button>MODIFICAR</button>
         </form>
      );
