@@ -1,0 +1,69 @@
+{
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "Monitor 17 pulgadas",
+      "descripcion": "Monitor plano LCD",
+      "precio": 110.22,
+      "createdAt": "2024-10-23T10:56:35.101Z"
+    },
+    {
+      "id": "2",
+      "nombre": "Teclado",
+      "descripcion": "Teclado USB en español",
+      "precio": 20.12,
+      "createdAt": "2024-10-23T10:56:35.101Z"
+    },
+    {
+      "id": "3",
+      "nombre": "Impresora",
+      "descripcion": "Impresora láser a color",
+      "precio": 360.05,
+      "createdAt": "2024-10-23T10:56:35.101Z"
+    },
+    {
+      "id": "4dce",
+      "nombre": "producto1",
+      "descripcion": "descripcion1",
+      "precio": 30,
+      "createdAt": "2024-11-15T20:35:16.858Z"
+    }
+  ],
+  "clientes": [
+    {
+      "id": "1",
+      "nombre": "ana",
+      "domicilio": "montilla",
+      "fecha_nacimiento": "1990-10-10",
+      "createdAt": "2024-10-23T10:56:35.101Z"
+    },
+    {
+      "id": "2",
+      "nombre": "jose",
+      "domicilio": "cabra",
+      "fecha_nacimiento": "1992-12-12",
+      "createdAt": "2024-10-23T10:56:35.101Z"
+    },
+    {
+      "id": "3",
+      "nombre": "fran",
+      "domicilio": "lucena",
+      "fecha_nacimiento": "1990-11-11",
+      "createdAt": "2024-10-23T10:56:35.101Z"
+    },
+    {
+      "id": "8873",
+      "nombre": "manu",
+      "domicilio": "monturque",
+      "fecha_nacimiento": "1996-04-04",
+      "createdAt": "2024-11-27T18:00:27.620Z"
+    },
+    {
+      "id": "430f",
+      "nombre": "paco",
+      "domicilio": "montalban",
+      "fecha_nacimiento": "2024-11-27",
+      "createdAt": "2024-11-27T18:33:18.745Z"
+    }
+  ]
+}
