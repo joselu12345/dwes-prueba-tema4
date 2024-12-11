@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { deleteCookie, setCookie } from "@/lib/cookies";
 
 const usuarios = [
-  {nombre: 'pepe', key: 'pepe'},
-  {nombre: 'ana', key: 'ana'  },
+  {nombre: 'medico1', key: 'medico1'},
+  {nombre: 'medico2', key: 'medico2'  },
 ]
 
 export async function login(formData) {

@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 
-const EXPIRE_TIME = 5 * 60 * 1000 // ms
+const EXPIRE_TIME = 10 * 60 * 1000 // ms
 
 
 export async function getCookie(name) {
