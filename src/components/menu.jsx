@@ -13,7 +13,7 @@ const menu = [
         href: '/medicos'
     },
     {
-        text: 'Pacientess',
+        text: 'Pacientes',
         href: '/pacientes'
     }
 ]
