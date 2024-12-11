@@ -6,19 +6,19 @@ async function eliminarPaciente(formData) {
     'use server'
     const id = formData.get('id')
 
-    await connection.query('delete from pacientes where id=?', [id])
-    revalidatePath('/pacientes')
+    await fetch('http://localhost:4000/pacientes/' + id, { method: 'DELETE' })
+    revalidatePath('/pacientes-api')
 }
 
 async function insertarPaciente(formData) {
     'use server'
-    const nombre = formData.get('nombre')
-    const localidad = formData.get('localidad')
-    const fecha_nacimiento = formData.get('fecha_nacimiento')
-    
-    await connection.query('insert into pacientes(nombre, localidad, fecha_nacimiento) values (?, ?, ?)', 
-        [nombre, localidad, fecha_nacimiento])
-    revalidatePath('/pacientes')
+    const [nombre, localidad, fecha_nacimiento] = formData.values()
+    const response = await fetch('http://localhost:4000/pacientes', {
+        method: 'POST',
+        body: JSON.stringify({ nombre, localidad, fecha_nacimiento, createdAt: new Date().toISOString() })
+    })
+    const data = await response.json()
+    revalidatePath('/pacientes-api')
 
 }
 
@@ -26,8 +26,8 @@ async function insertarPaciente(formData) {
 
 async function PaginaPacientes() {
 
-    const [rows] = await connection.query('select * from pacientes')
-    console.log(rows)
+    const response = await fetch('http://localhost:4000/pacientes')
+    const [rows] = await response.json()
 
     return (
         <>
@@ -46,9 +46,9 @@ async function PaginaPacientes() {
                 {
                     rows.map(paciente =>
                         <div key={paciente.id}>
-                            <Link href={`/pacientes/${paciente.id}`}> {paciente.nombre} </Link>
+                            <Link href={`/pacientes-api/${paciente.id}`}> {paciente.nombre} </Link>
 
-                            <Link href={`/pacientes/${paciente.id}/modificar`}> MODIFICAR </Link>
+                            <Link href={`/pacientes-api/${paciente.id}/modificar`}> MODIFICAR </Link>
 
                             <form action={eliminarPaciente}>
                                 <input type="hiden" name="id" defaultValue={paciente.id} />

@@ -6,19 +6,19 @@ async function eliminarMedico(formData) {
     'use server'
     const id = formData.get('id')
 
-    await connection.query('delete from medicos where id=?', [id])
-    revalidatePath('/medicos')
+    await fetch('http://localhost:4000/medicos/' + id, { method: 'DELETE' })
+    revalidatePath('/medicos-api')
 }
 
 async function insertarMedico(formData) {
     'use server'
-    const nombre = formData.get('nombre')
-    const especialidad = formData.get('especialidad')
-    const perfil = formData.get('perfil')
-    
-    await connection.query('insert into medicos(nombre, especialidad, perfil) values (?, ?, ?)', 
-        [nombre, especialidad, perfil])
-    revalidatePath('/medicos')
+    const [nombre, especialidad, perfil] = formData.values()
+    const response = await fetch('http://localhost:4000/medicos', {
+        method: 'POST',
+        body: JSON.stringify({ nombre, especialidad, perfil, createdAt: new Date().toISOString() })
+    })
+    const data = await response.json()
+    revalidatePath('/medicos-api')
 
 }
 
@@ -26,7 +26,9 @@ async function insertarMedico(formData) {
 
 async function PaginaMedicos() {
 
-    const [rows] = await connection.query('select * from medicos')
+    const response = await fetch('http://localhost:4000/medicos')
+    const [rows] = await response.json()
+
     console.log(rows)
 
     return (
@@ -46,9 +48,9 @@ async function PaginaMedicos() {
                 {
                     rows.map(medico =>
                         <div key={medico.id}>
-                            <Link href={`/medicos/${medico.id}`}> {medico.nombre} </Link>
+                            <Link href={`/medicos-api/${medico.id}`}> {medico.nombre} </Link>
 
-                            <Link href={`/medicos/${medico.id}/modificar`}> MODIFICAR </Link>
+                            <Link href={`/medicos-api/${medico.id}/modificar`}> MODIFICAR </Link>
 
                             <form action={eliminarMedico}>
                                 <input type="hiden" name="id" defaultValue={medico.id} />

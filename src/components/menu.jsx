@@ -15,7 +15,16 @@ const menu = [
     {
         text: 'Pacientes',
         href: '/pacientes'
+    },
+    {
+        text: 'Medicos-api',
+        href: '/medicos-api'
+    },
+    {
+        text: 'Pacientes-api',
+        href: '/pacientes-api'
     }
+
 ]
 
 function Menu() {
