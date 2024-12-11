@@ -1,18 +1,18 @@
 import connection from "@/lib/mysql";
 
-async function PaginaAlumno({params}) {
+async function PaginaMedico({params}) {
     const { id } = await params
-    const [rows] = await connection.query('select * from alumnos where id=?', [id])
+    const [rows] = await connection.query('select * from medicos where id=?', [id])
     
-    const alumno = rows[0]
+    const medico = rows[0]
 
     return ( 
         <div>
-            <p>{alumno.nombre}</p>
-            <p>{alumno.localidad}</p>
-            <p>{alumno.fecha_nacimiento.toLocaleDateString()}</p>
+            <p>{medico.nombre}</p>
+            <p>{medico.especialidad}</p>
+            <p>{medico.perfil}</p>
         </div>
      );
 }
 
-export default PaginaAlumno;
+export default PaginaMedico;
